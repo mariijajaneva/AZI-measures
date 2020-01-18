@@ -1,6 +1,8 @@
 
 # coding: utf-8
 
+import json
+
 def AZIvrednost(graf, alpha=3): #Izračun AZI vrednost za nek graf
     vsota = 0
     for u in graf:
@@ -22,6 +24,7 @@ def generiranje_dreves(n):
 
 from random import choice
 def minima(graf, n=100, alpha=3):
+    ime = "min%d_%d_%d.json" % (alpha, len(graf), graf.size())
     najboljsa = trenutna = AZIvrednost(graf, alpha)
     najboljsi_graf = graf
     for j in range(n):
@@ -39,6 +42,9 @@ def minima(graf, n=100, alpha=3):
         if a < najboljsa:
             najboljsi_graf = K
             najboljsa = a
+            print "%d: %f" % (j, a)
+            with open(ime, "w") as f:
+                json.dump(K.sparse6_string(), f)
         if a < trenutna or exp((trenutna - a) / T) > random():
             graf = K
             trenutna = a
@@ -51,6 +57,7 @@ def minima(graf, n=100, alpha=3):
 
 from random import choice
 def maxima(graf, n=100, alpha=3):
+    ime = "max%d_%d_%d.json" % (alpha, len(graf), graf.size())
     najboljsa = trenutna = AZIvrednost(graf, alpha)
     najboljsi_graf = graf
     for j in range(n):
@@ -68,6 +75,9 @@ def maxima(graf, n=100, alpha=3):
         if a > najboljsa:
             najboljsi_graf = K
             najboljsa = a
+            print "%d: %f" % (j, a)
+            with open("max%d_%d.json" % (len(K), K.size()), "w") as f:
+                json.dump(K.sparse6_string(), f)
         if a > trenutna or exp((trenutna - a) / T) > random():
             graf = K
             trenutna = a
