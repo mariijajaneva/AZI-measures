@@ -76,7 +76,7 @@ def maxima(graf, n=100, alpha=3):
             najboljsi_graf = K
             najboljsa = a
             print "%d: %f" % (j, a)
-            with open("max%d_%d.json" % (len(K), K.size()), "w") as f:
+            with open(ime, "w") as f:
                 json.dump(K.sparse6_string(), f)
         if a > trenutna or exp((trenutna - a) / T) > random():
             graf = K
