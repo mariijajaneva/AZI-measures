@@ -19,12 +19,18 @@ def generiranje_dreves(n):
     A = graphs.RandomTree(n)
     return A
 
+def fmt(x):
+    if isinstance(x, Integer):
+        return str(x)
+    else:
+        return "%.1f" % x
+
 # In[11]:
 
 
 from random import choice
 def minima(graf, n=100, alpha=3):
-    ime = "min%d_%d_%d.json" % (alpha, len(graf), graf.size())
+    ime = "min%s_%d_%d.json" % (fmt(alpha), len(graf), graf.size())
     najboljsa = trenutna = AZIvrednost(graf, alpha)
     najboljsi_graf = graf
     for j in range(n):
@@ -57,7 +63,7 @@ def minima(graf, n=100, alpha=3):
 
 from random import choice
 def maxima(graf, n=100, alpha=3):
-    ime = "max%d_%d_%d.json" % (alpha, len(graf), graf.size())
+    ime = "max%s_%d_%d.json" % (fmt(alpha), len(graf), graf.size())
     najboljsa = trenutna = AZIvrednost(graf, alpha)
     najboljsi_graf = graf
     for j in range(n):
